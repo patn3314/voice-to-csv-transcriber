@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self';">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音声文字起こしアプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>音声文字起こしアプリ</h1>
+    <textarea id="transcript" placeholder="ここに文字起こしされたテキストが表示されます..." readonly></textarea><br>
+    <button id="start-btn">録音開始</button>
+    <button id="stop-btn" disabled>録音停止</button>
+    <button id="download-btn" disabled>CSVダウンロード</button>
+
+    <script src="app.js"></script>
+</body>
+</html>
