@@ -19,9 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     recognition.maxAlternatives = 1;
 
     let finalTranscript = '';
+    let isRecording = false;
 
     startBtn.addEventListener('click', () => {
         recognition.start();
+        isRecording = true;
         startBtn.disabled = true;
         stopBtn.disabled = false;
         downloadBtn.disabled = true;
@@ -31,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     stopBtn.addEventListener('click', () => {
         recognition.stop();
+        isRecording = false;
         startBtn.disabled = false;
         stopBtn.disabled = true;
         downloadBtn.disabled = false;
@@ -40,13 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const speechResult = event.results[0][0].transcript;
         finalTranscript += speechResult + '\n';
         transcriptArea.value = finalTranscript;
+        transcriptArea.scrollTop = transcriptArea.scrollHeight; // 自動スクロール
     };
 
     recognition.onerror = (event) => {
         console.error('Speech recognition error detected: ' + event.error);
         alert('音声認識中にエラーが発生しました: ' + event.error);
+        isRecording = false;
         startBtn.disabled = false;
         stopBtn.disabled = true;
+    };
+
+    recognition.onend = () => {
+        if (isRecording) {
+            // 音声認識が停止した場合でも自動的に録音を再開
+            recognition.start();
+        }
     };
 
     downloadBtn.addEventListener('click', () => {
