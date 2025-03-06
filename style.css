@@ -1,54 +1,56 @@
 /* style.css */
-
-/* カスタムプロパティ（CSS変数）- テーマカラー */
 :root {
-    /* ライトモード - 目に優しいカラーパレット */
-    --bg-primary: #f8f9fa;
+    /* ライトモード*/
+    --bg-primary: #f0f2f5;
     --bg-secondary: #ffffff;
-    --text-primary: #2c3e50;
-    --text-secondary: #5d6d7e;
-    --border-color: #dfe4ea;
-    --primary-color: #3498db;
-    --primary-hover: #2980b9;
-    --danger-color: #e74c3c;
-    --danger-hover: #c0392b;
-    --secondary-color: #27ae60;
-    --secondary-hover: #219653;
-    --success-color: #2ecc71;
-    --warning-color: #f39c12;
-    --error-color: #e74c3c;
-    --info-color: #3498db;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border-color: #cbd5e1;
+    --primary-color: #3b82f6;
+    --primary-hover: #2563eb;
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+    --secondary-color: #10b981;
+    --secondary-hover: #059669;
+    --success-color: #22c55e;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    --info-color: #3b82f6;
     --shadow-color: rgba(0, 0, 0, 0.08);
     --card-bg: #ffffff;
-    --input-bg: #f8f9fa;
-    --input-text: #2c3e50;
+    --input-bg: #f8fafc;
+    --input-text: #1e293b;
     --header-bg: #ffffff;
     --header-shadow: rgba(0, 0, 0, 0.05);
+    --transcript-border: #e2e8f0;
+    --transcript-bg: #f8fafc;
 }
 
-/* ダークモード - 目に優しい暗色パレット */
+/* ダークモード*/
 [data-theme="dark"] {
-    --bg-primary: #1a1a2e;
-    --bg-secondary: #16213e;
-    --text-primary: #e9ecef;
-    --text-secondary: #adb5bd;
-    --border-color: #343a40;
-    --primary-color: #4361ee;
-    --primary-hover: #3a56d4;
-    --danger-color: #e63946;
-    --danger-hover: #c1121f;
-    --secondary-color: #4cc9f0;
-    --secondary-hover: #3db8df;
-    --success-color: #52b788;
-    --warning-color: #fca311;
-    --error-color: #e63946;
-    --info-color: #4cc9f0;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+    --primary-color: #3b82f6;
+    --primary-hover: #2563eb;
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+    --secondary-color: #10b981;
+    --secondary-hover: #059669;
+    --success-color: #22c55e;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    --info-color: #3b82f6;
     --shadow-color: rgba(0, 0, 0, 0.2);
-    --card-bg: #16213e;
-    --input-bg: #1a1a2e;
-    --input-text: #e9ecef;
-    --header-bg: #16213e;
+    --card-bg: #1e293b;
+    --input-bg: #0f172a;
+    --input-text: #f1f5f9;
+    --header-bg: #1e293b;
     --header-shadow: rgba(0, 0, 0, 0.2);
+    --transcript-border: #334155;
+    --transcript-bg: #1e293b;
 }
 
 /* リセットおよび基礎設定 */
@@ -132,6 +134,7 @@ main {
     border-radius: 8px;
     box-shadow: 0 1px 3px var(--shadow-color);
     margin-bottom: 0.5rem;
+    border: 1px solid var(--border-color);
 }
 
 /* ステータスインジケーター */
@@ -185,7 +188,7 @@ main {
     font-weight: 500;
 }
 
-/* 文字起こしコンテナ */
+/* 文字起こしコンテナ - 視認性向上 */
 .transcript-container {
     position: relative;
     background-color: var(--bg-secondary);
@@ -197,6 +200,7 @@ main {
     flex-direction: column;
     flex: 1;
     min-height: 0; /* Flexboxでの伸縮を許可 */
+    border: 1px solid var(--transcript-border);
 }
 
 .transcript-actions {
@@ -216,7 +220,7 @@ main {
     line-height: 1.6;
     border: none;
     resize: both;
-    background-color: var(--input-bg);
+    background-color: var(--transcript-bg);
     color: var(--input-text);
     transition: all 0.3s ease;
     border-radius: 8px;
@@ -225,7 +229,7 @@ main {
 
 #transcript:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
 }
 
 #transcript::placeholder {
@@ -258,7 +262,7 @@ main {
 
 .btn:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
 }
 
 .btn:active {
@@ -353,46 +357,70 @@ main {
     transform: translateX(24px);
 }
 
-/* アイコン */
+/* アイコン - 位置調整と修正 */
 .btn-icon {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 18px;
     height: 18px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
     position: relative;
+    line-height: 1;
 }
 
-/* テキストベースのアイコン（SVGの代わり） */
+/* テキストベースのアイコン（SVGの代わり） - 位置調整 */
 .record-icon::before {
     content: "●";
     color: white;
     font-size: 14px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .stop-icon::before {
     content: "■";
     color: white;
     font-size: 14px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .download-icon::before {
     content: "↓";
     color: white;
     font-size: 16px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* クリップボードコピーアイコンの修正 */
 .copy-icon::before {
-    content: "©";
+    content: "⎘";  /* クリップボードを表す一般的な記号 */
     color: var(--text-primary);
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .clear-icon::before {
     content: "×";
     color: var(--text-primary);
     font-size: 16px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* トースト通知 */
@@ -412,6 +440,7 @@ main {
     text-align: center;
     opacity: 0;
     font-size: 0.9rem;
+    border: 1px solid var(--border-color);
 }
 
 .toast.show {
@@ -482,7 +511,7 @@ main {
 
 /* アクセシビリティ向上 */
 :focus {
-    outline: 2px solid rgba(52, 152, 219, 0.5);
+    outline: 2px solid rgba(59, 130, 246, 0.5);
     outline-offset: 2px;
 }
 
