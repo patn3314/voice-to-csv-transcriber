@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (finalTranscript.trim() !== '') {
             downloadBtn.disabled = false;
             copyBtn.disabled = false;
+            clearBtn.disabled = false;
         }
     };
 
@@ -218,4 +219,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 初期状態の設定
     updateStatus('待機中', 'idle');
+    
+    // テキストエリアのリサイズ処理
+    const resizeObserver = new ResizeObserver(() => {
+        // テキストエリアの高さを調整（必要に応じて）
+    });
+    
+    resizeObserver.observe(transcriptArea);
 });
